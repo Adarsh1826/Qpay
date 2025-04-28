@@ -1,11 +1,12 @@
-import Image, { type ImageProps } from "next/image";
-import { Button } from "@repo/ui/button";
-import styles from "./page.module.css";
-import {prisma} from "@repo/db";
-export default function Home() {
+"use client"
+import { signIn, signOut, useSession } from "next-auth/react";
+import { AppBar } from "@repo/ui/appbar";
+
+export default function Page() {
+  const session = useSession();
   return (
-    <div className="bg-yellow-300">
-      hii there
-    </div>
+   <div>
+      <AppBar onSignin={signIn} onSignout={signOut} user={session.data?.user} />
+   </div>
   );
 }
